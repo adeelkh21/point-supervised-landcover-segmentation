@@ -1,8 +1,29 @@
-# Land Cover Classification Dataset - LandCover.ai v1
+# Point-Supervised Semantic Segmentation for Remote Sensing
+
+> Learn land cover segmentation from sparse point annotations using Partial Cross Entropy Loss
+
+[![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.5.1-red.svg)](https://pytorch.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ## Overview
 
-This repository contains the **LandCover.ai v1** dataset, which is designed for land cover semantic segmentation tasks. The dataset consists of high-resolution aerial imagery paired with corresponding segmentation masks. This data is pre-processed and split into training, validation, and test sets for machine learning model development.
+This project implements **point-supervised semantic segmentation** for remote sensing land cover classification using the **LandCover.ai v1** dataset. Instead of requiring expensive pixel-wise annotations, our approach trains deep learning models using only sparse point labels—**reducing annotation effort by 99.8%** while achieving **66.31% mIoU**.
+
+**Key Features:**
+- **Partial Cross Entropy Loss**: Custom loss function for sparse supervision
+- **DeepLabV3+ with ResNet-50**: State-of-the-art segmentation architecture
+- **Comprehensive Experiments**: 15, 40, and 70 points per class
+- **Production-Ready**: Full training pipeline with 7,470 samples
+- **Strong Results**: Up to 81% IoU on woodland, 88% on background
+
+**Quick Results:**
+
+| Supervision | Labeled Pixels | mIoU | Woodland IoU | Building IoU |
+|-------------|----------------|------|--------------|--------------|
+| 15 points   | 0.06%         | 64.40% | 79.22% | 48.34% |
+| 40 points   | 0.08%         | 65.38% | 81.05% | 49.26% |
+| 70 points   | 0.13%         | 66.31% | 80.94% | 51.64% |
 
 ---
 
@@ -22,7 +43,7 @@ landcover.ai.v1/
 
 ---
 
-## 🔪 Data Split
+## Data Split
 
 The dataset is split into three subsets to enable proper training, validation, and testing of machine learning models:
 
@@ -45,7 +66,7 @@ The dataset is split into three subsets to enable proper training, validation, a
 
 ---
 
-## 🔧 Data Processing Script (`split.py`)
+## Data Processing Script (`split.py`)
 
 This Python script is responsible for preprocessing the raw aerial images and masks by tiling them into smaller, manageable pieces.
 
@@ -84,7 +105,7 @@ This will create an `output/` directory with all the tiled images and masks.
 
 ---
 
-## 📝 File Format Details
+## File Format Details
 
 ### Split Files (train.txt, val.txt, test.txt)
 
@@ -107,7 +128,7 @@ This will create an `output/` directory with all the tiled images and masks.
 
 ---
 
-## 🔬 Dataset Source
+## Dataset Source
 
 This appears to be derived from the **LandCover.ai** project, which provides high-resolution land cover classification datasets based on aerial imagery from Poland. The dataset is commonly used for semantic segmentation research in remote sensing and computer vision.
 
